@@ -1,9 +1,15 @@
 import { proxyApiNH } from './api';
 import { Note, CreateNotePayload } from '@/types/note';
+import { User } from '@/types/user';
 
 interface FetchNotesResponse {
   notes: Note[];
   totalPages: number;
+}
+
+interface RegisterData {
+  email: string;
+  password: string;
 }
 
 export const fetchNotes = async (
@@ -37,4 +43,9 @@ export const createNote = async (
 export const deleteNote = async (id: string): Promise<Note> => {
   const response = await proxyApiNH.delete<Note>(`/notes/${id}`);
   return response.data;
+};
+
+export const register = async (data: RegisterData): Promise<User> => {
+  const regResponse = await proxyApiNH.post<User>('/auth/register', data);
+  return regResponse.data;
 };
