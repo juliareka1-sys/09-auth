@@ -1,14 +1,5 @@
-import axios from 'axios';
-import type { Note, CreateNotePayload } from '@/types/note';
-
-const accessKey = process.env.NEXT_PUBLIC_NOTEHUB_TOKEN;
-
-const notehubApi = axios.create({
-  baseURL: 'https://notehub-public.goit.study/api',
-  headers: {
-    Authorization: `Bearer ${accessKey}`,
-  },
-});
+import { proxyApiNH } from './api';
+import { Note, CreateNotePayload } from '@/types/note';
 
 interface FetchNotesResponse {
   notes: Note[];
@@ -20,7 +11,7 @@ export const fetchNotes = async (
   page: number,
   tag?: string
 ): Promise<FetchNotesResponse> => {
-  const response = await notehubApi.get<FetchNotesResponse>('/notes', {
+  const response = await proxyApiNH.get<FetchNotesResponse>('/notes', {
     params: {
       search: searchQuery,
       page,
@@ -32,18 +23,18 @@ export const fetchNotes = async (
 };
 
 export const fetchNoteById = async (id: string): Promise<Note> => {
-  const responseById = await notehubApi.get<Note>(`/notes/${id}`);
+  const responseById = await proxyApiNH.get<Note>(`/notes/${id}`);
   return responseById.data;
 };
 
 export const createNote = async (
   noteData: CreateNotePayload
 ): Promise<Note> => {
-  const res = await notehubApi.post<Note>('/notes', noteData);
+  const res = await proxyApiNH.post<Note>('/notes', noteData);
   return res.data;
 };
 
 export const deleteNote = async (id: string): Promise<Note> => {
-  const response = await notehubApi.delete<Note>(`/notes/${id}`);
+  const response = await proxyApiNH.delete<Note>(`/notes/${id}`);
   return response.data;
 };

@@ -1,12 +1,12 @@
 'use client';
-import css from '@/app/notes/filter/[...slug]/NotesPage.module.css';
+import css from './NotesPage.module.css';
 import { useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import { useDebouncedCallback } from 'use-debounce';
 import NoteList from '@/components/NoteList/NoteList';
 import Pagination from '@/components/Pagination/Pagination';
 import SearchBox from '@/components/SearchBox/SearchBox';
-import { fetchNotes } from '@/lib/api';
+import { fetchNotes } from '@/lib/api/clientApi';
 import Link from 'next/link';
 
 interface NotesProps {

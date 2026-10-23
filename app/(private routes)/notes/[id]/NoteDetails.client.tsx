@@ -1,8 +1,8 @@
 'use client';
-import css from '@/app/notes/[id]/NoteDetails.module.css';
+import css from './NoteDetails.module.css';
 import { useParams } from 'next/navigation';
 import { useQuery } from '@tanstack/react-query';
-import { fetchNoteById } from '@/lib/api';
+import { fetchNoteById } from '@/lib/api/clientApi';
 
 export default function NoteDetailsClient() {
   const { id } = useParams<{ id: string }>();

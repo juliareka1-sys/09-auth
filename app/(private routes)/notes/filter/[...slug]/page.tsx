@@ -3,8 +3,8 @@ import {
   HydrationBoundary,
   dehydrate,
 } from '@tanstack/react-query';
-import { fetchNotes } from '@/lib/api';
-import NotesClient from '@/app/notes/filter/[...slug]/Notes.client';
+import { fetchNotes } from '@/lib/api/serverApi';
+import NotesClient from './Notes.client';;
 import { Metadata } from 'next';
 
 interface SlugBox {
