@@ -2,11 +2,13 @@
 import css from './SignUpPage.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { register, RegisterData} from '@/lib/api/clientApi';
+import { register, RegisterData } from '@/lib/api/clientApi';
+import { useAuthStore } from '@/lib/store/authStore';
 
 const SignUp = () => {
   const router = useRouter();
   const [error, setError] = useState('');
+  const setUser= useAuthStore(state => state.setUser)
   const handleSubmit = async (formData: FormData) => {
     try {
       const regUserData: RegisterData = {
@@ -15,6 +17,7 @@ const SignUp = () => {
 };
       const registrationResult = await register(regUserData);
       if (registrationResult) {
+        setUser(registrationResult);
         router.push('/profile');
       } else {
         setError('Registration failed');

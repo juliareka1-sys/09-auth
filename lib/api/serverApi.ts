@@ -32,3 +32,11 @@ export const fetchNoteById = async (id: string): Promise<Note> => {
   });
   return responseById.data;
 };
+
+export const checkSession = async () => {
+  const cookieStore = await cookies();
+  const response = await proxyApiNH.get('/auth/session', {
+    headers: { Cookie: cookieStore.toString() },
+  });
+  return response;
+};
