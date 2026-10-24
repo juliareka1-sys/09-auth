@@ -7,7 +7,7 @@ interface FetchNotesResponse {
   totalPages: number;
 }
 
-interface RegisterData {
+export interface RegisterData {
   email: string;
   password: string;
 }
@@ -47,5 +47,10 @@ export const deleteNote = async (id: string): Promise<Note> => {
 
 export const register = async (data: RegisterData): Promise<User> => {
   const regResponse = await proxyApiNH.post<User>('/auth/register', data);
+  return regResponse.data;
+};
+
+export const login = async (data: RegisterData): Promise<User> => {
+  const regResponse = await proxyApiNH.post<User>('/auth/login', data);
   return regResponse.data;
 };
