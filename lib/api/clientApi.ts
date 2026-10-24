@@ -12,6 +12,10 @@ export interface RegisterData {
   password: string;
 }
 
+export interface CheckSessionResponse {
+  success: boolean;
+}
+
 export const fetchNotes = async (
   searchQuery: string,
   page: number,
@@ -53,4 +57,18 @@ export const register = async (data: RegisterData): Promise<User> => {
 export const login = async (data: RegisterData): Promise<User> => {
   const regResponse = await proxyApiNH.post<User>('/auth/login', data);
   return regResponse.data;
+};
+
+export const getMe = async (): Promise<User> => {
+  const getMeResp = await proxyApiNH.get<User>('/users/me');
+  return getMeResp.data;
+};
+
+export const checkSession = async (): Promise<boolean> => {
+  const checkResp = await proxyApiNH.get<CheckSessionResponse>('/auth/session');
+  return checkResp.data.success;
+};
+
+export const logout = async (): Promise<void> => {
+  await proxyApiNH.post('/auth/logout');
 };

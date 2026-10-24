@@ -6,6 +6,7 @@ import Header from '@/components/Header/Header';
 import TanStackProvider from '@/components/TanStackProvider/TanStackProvider';
 import { ReactNode } from 'react';
 import { Roboto } from 'next/font/google';
+import AuthProvider from '@/components/AuthProvider/AuthProvider';
 
 export const metadata: Metadata = {
   title: 'NoteHubApp',
@@ -44,12 +45,14 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
     <html lang="en">
       <body className={roboto.variable}>
         <TanStackProvider>
+          <AuthProvider>
           <Header />
 
           {children}
           {modal}
 
-          <Footer />
+            <Footer />
+            </AuthProvider>
         </TanStackProvider>
       </body>
     </html>
