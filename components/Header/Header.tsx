@@ -20,7 +20,7 @@ export default function Header() {
               Notes
             </Link>
           </li>
-      <AuthNavigation/>
+          <AuthNavigation />
         </ul>
       </nav>
     </header>

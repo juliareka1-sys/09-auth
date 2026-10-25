@@ -46,13 +46,13 @@ export default function RootLayout({ children, modal }: RootLayoutProps) {
       <body className={roboto.variable}>
         <TanStackProvider>
           <AuthProvider>
-          <Header />
+            <Header />
 
-          {children}
-          {modal}
+            {children}
+            {modal}
 
             <Footer />
-            </AuthProvider>
+          </AuthProvider>
         </TanStackProvider>
       </body>
     </html>

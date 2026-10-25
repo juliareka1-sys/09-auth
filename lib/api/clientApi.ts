@@ -16,6 +16,10 @@ export interface CheckSessionResponse {
   success: boolean;
 }
 
+interface UserDataUpdate {
+  username: string;
+}
+
 export const fetchNotes = async (
   searchQuery: string,
   page: number,
@@ -71,4 +75,9 @@ export const checkSession = async (): Promise<boolean> => {
 
 export const logout = async (): Promise<void> => {
   await proxyApiNH.post('/auth/logout');
+};
+
+export const updateMe = async (data: UserDataUpdate): Promise<User> => {
+  const updateResp = await proxyApiNH.patch<User>('/users/me', data);
+  return updateResp.data;
 };

@@ -6,12 +6,10 @@ import Image from 'next/image';
 
 export const metadata: Metadata = {
   title: 'Profile',
-  description:
-    'NoteHub-Your note manager',
+  description: 'NoteHub-Your note manager',
   openGraph: {
     title: 'Profile',
-    description:
-      'NoteHub-Your note manager',
+    description: 'NoteHub-Your note manager',
     url: 'https://notehub.com/profile',
     images: [
       {
@@ -24,40 +22,33 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 const Profile = async () => {
   const user = await getMe();
   return (
     <main className={css.mainContent}>
-  <div className={css.profileCard}>
-      <div className={css.header}>
-	     <h1 className={css.formTitle}>Profile Page</h1>
-	     <Link href="/profile/edit" className={css.editProfileButton}>
-	       Edit Profile
-	     </Link>
-	   </div>
-     <div className={css.avatarWrapper}>
-      <Image
-        src={user.avatar}
-        alt="User Avatar"
-        width={120}
-        height={120}
-        className={css.avatar}
-      />
-    </div>
-    <div className={css.profileInfo}>
-      <p>
-        Username: {user.username}
-      </p>
-      <p>
-        Email: {user.email}
-      </p>
-    </div>
-  </div>
-</main>
+      <div className={css.profileCard}>
+        <div className={css.header}>
+          <h1 className={css.formTitle}>Profile Page</h1>
+          <Link href="/profile/edit" className={css.editProfileButton}>
+            Edit Profile
+          </Link>
+        </div>
+        <div className={css.avatarWrapper}>
+          <Image
+            src={user.avatar}
+            alt="User Avatar"
+            width={120}
+            height={120}
+            className={css.avatar}
+          />
+        </div>
+        <div className={css.profileInfo}>
+          <p>Username: {user.username}</p>
+          <p>Email: {user.email}</p>
+        </div>
+      </div>
+    </main>
+  );
+};
 
-)
-}
-
-export default Profile
+export default Profile;
